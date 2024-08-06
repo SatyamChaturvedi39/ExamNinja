@@ -1,0 +1,352 @@
+/*sign in page*/
+
+.logo {
+    max-width: 4%;
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 15px;
+  }
+  
+  .ExamNinja{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.45;
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+  }
+  
+  .girl{
+    padding-left: 10%;
+    padding-top: 4%;
+    margin-right: 40px;
+  }
+  
+  .tagline{
+    padding-left: 20%;
+    font-family: "Doppio One", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.4em;
+    color: #E99F31;
+    margin-left: 37px;
+    margin-top: 5px;
+  }
+  
+  .form {
+    display: flex;
+    font-family: sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    background: #ffffff;
+    flex-direction: column;
+    margin: 0;
+  }
+  
+  .main {
+    background-color: #f4be32;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    transition: transform 0.2s;
+    width: 380px;
+    text-align: center;
+    height: 450px;
+  }
+  
+  .signin{
+    color: white;
+    font-family: "Mukta", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 34px;
+    margin-bottom: 30px;
+  }
+  
+  ::placeholder{
+    color: #6C6E71;
+    font-size: 18px;
+  }
+  
+  .input {
+    display: block;
+    width: 85%;
+    padding: 14px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin : 0 auto;
+    margin-bottom: 18px;
+    height: 40px;
+  }
+  
+  .signbutton {
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: #48392B;
+    width: 85%;
+    font-size: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(107, 101, 101, 0.19);
+  }
+  
+  .signbutton:hover {
+    background-color: #301d0c;
+    color: white;
+  }
+  
+  .signbutton:active {
+  background-color: #261d15;
+  transform: translateY(4px);
+  }
+  
+  .wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .formbody{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 200px;
+    align-items: center;
+  }
+  
+  /*question page*/
+  
+  .logoq {
+    max-width: 9%; /*whaaa*/
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .ExamNinjaq{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.45;
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+  }
+  
+  .questionpage {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    width: 98%;
+    padding: 10px 20px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 6px 0 rgba(0, 0, 0, 0.19);
+    
+  }
+  
+  .timeimg{
+    width: 10%;
+    margin-right: 40px;
+  }
+  
+  
+  .timer {
+    display: flex;
+    align-items: center; /* This centers items vertically */
+    justify-content: center; /* This centers items horizontally */
+    width: 12%;
+    background-color: #f4be32;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .content {
+    display: flex;
+    width: 100%;
+    min-width: 1500px;
+    min-height: 500px;
+    margin-top: 20px;
+  }
+  
+  .sidebar {
+    background-color: white;
+    width: 13%;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-left: 5%;
+    border-radius: 10px;
+  }
+  
+  
+  .sidebar .questions .qn {
+    margin-top: 3%;
+  }
+  
+  .qn{
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 24px;
+  }
+  
+  .sidebar .questions ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    column-gap: 5px;
+  }
+  
+  .nos{
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 21px;
+  }
+  
+  .sidebar .questions ul .nos {
+    background-color: #4A90E2;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    margin: 10px 0;
+    cursor: pointer;
+  }
+  
+  .sidebar .questions ul .active .nos{
+    background-color: #1E8449;
+  }
+  
+  #mainquestion {
+    background-color: white;
+    flex: 1;
+    width: 70%;
+    height: 500px;
+    padding: 20px;
+    margin-right: 5%;
+    margin-left: 1.5%;;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+  }
+  
+  .main h2 {
+    margin-top: 0;
+  }
+  
+  .question p {
+    font-size: 18px;
+  }
+  
+  .question form {
+    margin: 20px 0;
+  }
+  
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .buttonquestion {
+    padding: 15px 30px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  #prev {
+    background-color: #4A90E2;
+  }
+  
+  #next {
+    background-color: #1E8449;
+  }
+  
+  
+  /*flash*/
+  
+  .flashes {
+      margin: 20px auto;
+      max-width: 380px;
+    }
+    
+    .flash {
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      position: relative;
+      background-color: #f4f4f4; /* Default background color */
+      color: #333; /* Default text color */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Different categories of flash messages */
+    .flash.info {
+      background-color: #d9edf7;
+      color: #31708f;
+    }
+    
+    .flash.success {
+      background-color: #dff0d8;
+      color: #3c763d;
+    }
+    
+    .flash.warning {
+      background-color: #fcf8e3;
+      color: #8a6d3b;
+    }
+    
+    .flash.error {
+      background-color: #f2dede;
+      color: #a94442;
+    }
+    
+    /* Close button styles */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: none;
+      background: none;
+      font-size: 20px;
+      color: #333;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    
+    .close-btn:hover {
+      color: #000;
+    }
+    

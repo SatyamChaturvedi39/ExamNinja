@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExamNinja - Questions</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <script src="../static/questionPageScript.js" defer></script>
+</head>
+<body class="questionpage">
+    <div class="container">
+        <div class="header">
+            <header class="brand">
+                <img class="logoq" src="../static/images/ninja.png" alt="ExamNinjaLogo">
+                <h1 class="ExamNinjaq">ExamNinja</h1>
+            </header>
+            <div class="timer">
+                <img class="timerimg" src="../static/images/timer.png" alt="image of a timer" width="40"/>
+                <span id="timer">01:00:00</span>
+                
+            </div>
+        </div>
+        <div class="content">
+            <div class="sidebar">
+                <div class="questions">
+                    <h3 class="qn"><u>Questions:</u></h3>
+                    <ul id="questionList">
+                        
+                    </ul>
+                </div>
+            </div>
+            <div id="mainquestion">
+                <div id="mother">
+                </div>
+                <div class="navigation">
+                    <button class="buttonquestion" id="prev" style="display:none" onclick="switchQuestion(activeN-1)">PREVIOUS</button>
+                    <button class="buttonquestion" id="next" onclick="switchQuestion(activeN+1)">NEXT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Timer script
+        let timer = document.getElementById('timer');
+        let time = 3600;
+
+        setInterval(() => {
+            let hours = Math.floor(time / 3600);
+            let minutes = Math.floor((time % 3600) / 60);
+            let seconds = time % 60;
+
+            timer.textContent = 
+                `${hours.toString().padStart(2, '0')}:
+                ${minutes.toString().padStart(2, '0')}:
+                ${seconds.toString().padStart(2, '0')}`;
+
+            if (time > 0) {
+                time--;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

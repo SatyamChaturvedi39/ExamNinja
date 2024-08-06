@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ExamNinja - Login</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body class="form">
+    <header>
+        <img class="logo" src="../static/images/ninja.png" alt="ExamNinjaLogo">
+        <h1 class="ExamNinja">ExamNinja</h1>
+    </header>
+    <section class="formbody"> 
+        <div>
+            <img class="girl" src="../static/images/image 2.png" alt="a girl giving an exam" width="450">
+            <h5 class="tagline">your exam, our fortress.</h5>
+        </div>
+        <div class="main">
+            <h1 class="signin">Sign In</h1>
+            {% with messages = get_flashed_messages(with_categories=True) %}
+              {% if messages %}
+                <div class="flashes">
+                  {% for category, message in messages %}
+                    <div class="flash {{ category }}">
+                      {{ message }}
+                      <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endwith %}
+            <form action="" method="post">
+                  <input class="input" type="text" id="regno" name="regno" placeholder="Register Number" required>
+                  <input class="input" type="password" id="pw" name="pw" placeholder="Password" required>
+                  <input class="input" type="text" id="code" name="code" placeholder="Test Code" required>
+                  <div class="wrap">
+                        <button class="signbutton" type="submit">Sign In</button>
+                  </div>
+            </form>
+      </div>
+    </section>
+</body>
+</html>
