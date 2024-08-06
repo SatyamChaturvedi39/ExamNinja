@@ -43,6 +43,6 @@ def login():
         session['test_code'] = test_code
         session['test_in_progress'] = True
 
-        return redirect(url_for('views.test', code=test_code))
+        return redirect(url_for('views.rules'))
 
     return render_template('login.html')

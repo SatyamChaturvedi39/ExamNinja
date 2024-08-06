@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash, current_app
-from .models import record_test_completion, find_user_by_reg
 
 views = Blueprint('views', __name__)
 
@@ -40,3 +39,13 @@ def test(code):
         return redirect(url_for('views.view_scores'))
 
     return render_template('test.html', questions=question_set['questions'])
+
+@views.route('/rules', methods=['GET', 'POST'])
+def rules():
+    if request.method == 'POST':
+        if 'test_in_progress' in session:
+            return redirect(url_for('views.test', code=session['test_code']))
+        else:
+            return redirect(url_for('auth.login'))
+    
+    return render_template('rules.html')
