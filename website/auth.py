@@ -10,35 +10,29 @@ def login():
         password = request.form['pw']
         test_code = request.form['code']
 
-        # Check if the user exists
         user = find_user_by_reg(regno)
         if not user:
-            flash("Register number not found.")
+            flash("Register number not found.",'error')
             return redirect(url_for('auth.login'))
 
-        # Check password
         if not check_password(regno, password):
-            flash("Incorrect password.")
+            flash("Incorrect password.",'error')
             return redirect(url_for('auth.login'))
 
-        # Check if the user is banned
         banned, ban_timer = is_user_banned(regno)
         if banned:
-            flash(f"You are banned until {ban_timer}.")
+            flash(f"You are banned until {ban_timer}.",'warning')
             return redirect(url_for('auth.login'))
 
-        # Check if the test code is valid
         question_set = current_app.mongo.db.question_sets.find_one({"code": test_code})
         if not question_set:
-            flash("Invalid test code.")
+            flash("Invalid test code.",'error')
             return redirect(url_for('auth.login'))
 
-        # Check if the user has already taken the test
         if has_taken_test(regno, test_code):
-            flash("You have already taken this test.")
+            flash("You have already taken this test.",'warning')
             return redirect(url_for('auth.login'))
 
-        # Set session variables and redirect to the test page
         session['regno'] = regno
         session['test_code'] = test_code
         session['test_in_progress'] = True
@@ -46,3 +40,10 @@ def login():
         return redirect(url_for('views.rules'))
 
     return render_template('login.html')
+
+
+@auth.route('/logout')
+def logout():
+    session.clear()
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('auth.login'))

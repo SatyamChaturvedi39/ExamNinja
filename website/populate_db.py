@@ -23,11 +23,16 @@ question_sets = [
 ]
 
 with app.app_context():
-
     for user in registration_numbers:
-        add_user(user["register_number"], user["password"])
+        if not current_app.mongo.db.user.find_one({"register_number": user["register_number"]}):
+            add_user(user["register_number"], user["password"])
+        else:
+            print(f"User with register number {user['register_number']} already exists.")
 
     for question_set in question_sets:
-        current_app.mongo.db.question_sets.insert_one(question_set)
+        if not current_app.mongo.db.question_sets.find_one({"code": question_set["code"]}):
+            current_app.mongo.db.question_sets.insert_one(question_set)
+        else:
+            print(f"Question set with code {question_set['code']} already exists.")
 
     print("Data has been inserted successfully!")

@@ -1,9 +1,14 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash, current_app
+from .models import record_test_completion
 
 views = Blueprint('views', __name__)
 
 @views.route('/test/<code>', methods=['GET', 'POST'])
 def test(code):
+    if 'regno' not in session or 'test_code' not in session:
+        flash('You need to log in first.', 'error')
+        return redirect(url_for('auth.login'))
+
     if session.get('test_in_progress') is not True:
         flash("You cannot retake the test.")
         return redirect(url_for('auth.login'))
@@ -12,6 +17,10 @@ def test(code):
 
     # Fetch the question set from the database
     question_set = current_app.mongo.db.question_sets.find_one({"code": code})
+    
+    if not question_set:
+        flash("Invalid test code. Please try again.", "error")
+        return redirect(url_for('auth.login'))
 
     if request.method == 'POST':
         # Process user's answers
@@ -27,10 +36,7 @@ def test(code):
         score = correct_answers / len(question_set['questions']) * 100
 
         # Record test completion and score
-        current_app.mongo.db.user.update_one(
-            {"register_number": regno},
-            {"$set": {f"completed_tests.{code}": score}}
-        )
+        record_test_completion(regno, code,score,correct_answers)
 
         # Clear the session progress
         session.pop('test_in_progress', None)
@@ -42,6 +48,11 @@ def test(code):
 
 @views.route('/rules', methods=['GET', 'POST'])
 def rules():
+    if 'regno' not in session or 'test_code' not in session:
+        flash('You need to log in first.', 'error')
+        return redirect(url_for('auth.login'))
+
+
     if request.method == 'POST':
         if 'test_in_progress' in session:
             return redirect(url_for('views.test', code=session['test_code']))

@@ -37,10 +37,10 @@ def is_user_banned(register_number):
             return True, user["ban_timer"]
     return False, None
 
-def record_test_completion(register_number, question_set_code):
+def record_test_completion(register_number, question_set_code, score, correct_answers):
     current_app.mongo.db.user.update_one(
         {"register_number": register_number},
-        {"$set": {f"completed_tests.{question_set_code}":True}}
+        {"$set": {f"completed_tests.{question_set_code}": {"score": score, "correct_answers": correct_answers}}}
     )
 
 def has_taken_test(register_number, question_set_code):
