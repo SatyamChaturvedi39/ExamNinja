@@ -41,8 +41,8 @@ def test(code):
         # Clear the session progress
         session.pop('test_in_progress', None)
 
-        flash(f"Test submitted successfully! Your score is {score:.2f}%.")
-        return redirect(url_for('views.view_scores'))
+        flash(f"Test submitted successfully!")
+        return redirect(url_for('views.score',code=code))
 
     return render_template('test.html', questions=question_set['questions'])
 
@@ -60,3 +60,23 @@ def rules():
             return redirect(url_for('auth.login'))
     
     return render_template('rules.html')
+
+@views.route('/score/<code>')
+def score(code):
+    if 'regno' not in session:
+        flash('You need to log in first.', 'error')
+        return redirect(url_for('auth.login'))
+    
+    regno = session.get('regno')
+
+    user = current_app.mongo.db.user.find_one({"register_number": regno})
+    completed_test = user["completed_tests"].get(code)
+
+    if not completed_test:
+        print("test results not found.",'info')#debugging statement, remove later
+        return redirect(url_for('auth.login'))
+
+    score = completed_test['score']
+    correct_answers = completed_test['correct_answers']
+
+    return render_template('score.html',score=score, correct_answers=correct_answers,total_questions=10)

@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ExamNinja - Questions</title>
     <link rel="stylesheet" href="../static/styles.css">
-    <script src="../static/questionPageScript.js" defer></script>
 </head>
-<body class="questionpage">
+<body class="questionpage" data-questions="{{ questions }}" id="test1">
     <div class="container">
         <div class="header">
             <header class="brand">
@@ -60,5 +59,6 @@
             }
         }, 1000);
     </script>
+    {% extends "questionPageScript.html"%}
 </body>
 </html>
