@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  
     <title>ExamNinja - Rules</title>
     <link rel="stylesheet" href="../static/styles.css">
 </head>
@@ -11,21 +10,24 @@
         <h1 class="ExamNinja">ExamNinja</h1>
     </header>
     <center><div class="rulediv">
-    <center><h1 class="rulesbro">Exam Rules</h1></center>
-    <p class="bignice">Please read the following rules before starting the exam:</p>
-    <ul class="ulta">
-        <li class="ll">Do not switch between tabs.</li>
-        <li class="ll">Do not move your cursor outside the webpage.</li>
-        <li class="ll">Using your right mouse button is not allowed.</li>
-        <li class="ll">Using keyboard shortcuts is not allowed.</li>
-        <li class="ll">The exam will be automatically submitted after 15 minutes.</li>
-        <li class="ll">You have to score higher than 40% to pass the test.</li>
-    </ul>
-    <form method="POST">
+        <center><h1 class="rulesbro">Exam Rules</h1></center>
+        <p class="bignice">Please read the following rules before starting the exam:</p>
+        <ul class="ulta">
+            <li class="ll">Do not switch between tabs.</li>
+            <li class="ll">Do not move your cursor outside the webpage.</li>
+            <li class="ll">Using your right mouse button is not allowed.</li>
+            <li class="ll">Using keyboard shortcuts is not allowed.</li>
+            <li class="ll">The exam will be automatically submitted after 15 minutes.</li>
+            <li class="ll">You have to score higher than 40% to pass the test.</li>
+        </ul>
         <div class="buttondown">
-            <button class="badbutton" type="submit">DENY</button><button class="goodbutton" type="submit">ACCEPT AND CONTINUE</button>
-      </div>
-    </form>
+            <form method="POST" action="{{ url_for('views.deny') }}">
+                <button class="badbutton" type="submit">DENY</button>
+            </form>
+            <form method="POST">
+                <button class="goodbutton" type="submit">ACCEPT AND CONTINUE</button>
+            </form>
+        </div>
     </div></center>
 </body>
 </html>

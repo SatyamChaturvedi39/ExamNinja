@@ -79,4 +79,11 @@ def score(code):
     score = completed_test['score']
     correct_answers = completed_test['correct_answers']
 
-    return render_template('score.html',score=score, correct_answers=correct_answers,total_questions=10)
+    return render_template('score.html',code=code,score=score, correct_answers=correct_answers,total_questions=10,regno=regno)
+
+@views.route('/deny', methods=['POST'])
+def deny():
+    flash('You have declined the exam rules.', 'warning')
+    session.pop('regno', None)
+    session.pop('test_code', None)
+    return redirect(url_for('auth.login'))
