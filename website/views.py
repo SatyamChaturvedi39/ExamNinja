@@ -37,7 +37,8 @@ def test(code):
             if str(selected_answer) == str(question['answer']):
                 correct_answers += 1
 
-        score = correct_answers / len(question_set['questions']) * 100
+        a = correct_answers / len(question_set['questions']) * 100
+        score=float(f"{a:.2f}")
 
         # Record test completion and score
         record_test_completion(regno, code,score,correct_answers)

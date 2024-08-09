@@ -1,97 +1,101 @@
 <script id="qs">
-set = JSON.parse((document.getElementById("testBody").dataset.questions).replaceAll("'", "\""))
-regno = document.getElementById("testBody").dataset.regno
-violations = 0
-vioPopup = document.getElementById("vioPopup")
-
-disqualify = function(){
-    alert("You have been disqualified for suspicious activity")
-    window.location.replace("/ban/"+regno)
-}
-
-document.addEventListener('keydown', function(event){
-    if ((event.ctrlKey && event.shiftKey && (event.key==="I"||event.key=="i"||event.key=="j"||event.key=="J"||event.key=="c"||event.key=="C"))||(event.key==123)||(event.key=="U"||event.ctrlKey)){
-        disqualify()
-    }
-})
-
-window.onblur = function(){
-    violations++;
-    vioPopup.style.display="block"
-    setTimeout(()=>{
-         vioPopup.style.display="none"
-     }, 5000)
-    if (violations>=3){
-        disqualify()
-    }
-}
-listy = document.getElementById("questionList")
-mother = document.getElementById("mother")
-count=1
-var activeQ=0;
-var activeN=1;
-switchQuestion = function(qNo){
-    prevButt = document.getElementById("prev")
-    nextButt = document.getElementById("next")
-    submitButt = document.getElementById("submitButt")
-    if (qNo<=Object.keys(set).length&&qNo>=1){
-    q = document.getElementById("q"+qNo)
-    oldQButt = document.getElementById("s"+activeN)
-    oldQButt.classList.remove("active")
-    qButt = document.getElementById("s"+qNo)
-    qButt.classList.add("active")
-    activeQ.style.display = "none"
-    q.style.display="block"
-    activeQ = q
-    activeN = qNo
+    window.history.pushState(null,"/logout",window.location.href);
+    window.onpopstate = function(){
+        window.history.pushState(null,"/logout",window.location.href);
+    };
+    set = JSON.parse((document.getElementById("testBody").dataset.questions).replaceAll("'", "\""))
+    regno = document.getElementById("testBody").dataset.regno
+    violations = 0
+    vioPopup = document.getElementById("vioPopup")
     
+    disqualify = function(){
+        alert("You have been disqualified for suspicious activity")
+        window.location.replace("/ban/"+regno)
     }
-    if(qNo==1){
-        prevButt.style.display="none"
-        nextButt.style.display="inline"
-        submitButt.style.display="none"
-    } else if(qNo==Object.keys(set).length){
-        nextButt.style.display="none"
-        prevButt.style.display = "inline"
-        submitButt.style.display="inline"
-    } else {
-        nextButt.style.display="inline"
-        prevButt.style.display = "inline"
-        submitButt.style.display="none"
+    
+    document.addEventListener('keydown', function(event){
+        if ((event.ctrlKey && event.shiftKey && (event.key==="I"||event.key=="i"||event.key=="j"||event.key=="J"||event.key=="c"||event.key=="C"))||(event.key==123)||(event.key=="U"||event.ctrlKey)){
+            disqualify()
+        }
+    })
+    
+    window.onblur = function(){
+        violations++;
+        vioPopup.style.display="block"
+        setTimeout(()=>{
+             vioPopup.style.display="none"
+         }, 5000)
+        if (violations>=3){
+            disqualify()
+        }
     }
-}
-questionClick = function(data){
-    switchQuestion(data.target.value)
-    console.log(set.length)
-}
-
-for (var j in set){
-    li = document.createElement("li")
-    li.classList = "nos options active"
-    li.innerHTML = count
-    li.onclick = questionClick
-    li.id="s"+count
-    li.value=count
-    listy.appendChild(li)
-    mC = document.createElement("div")
-    mC.id = "q"+count
-    mC.innerHTML = `<h2><center>QUESTION ${count}</center></h2>
-    <div class="question">
-        <p>${j}</p>
-            <label class="options"><input  type="radio" name="${j}" value="1"> ${set[j][0]}</label><br><br>
-            <label class="options"><input type="radio" name="${j}" value="2"> ${set[j][1]}</label><br><br>
-            <label class="options"><input  type="radio" name="${j}" value="3"> ${set[j][2]}</label><br><br>
-            <label class="options"><input  type="radio" name="${j}" value="4"> ${set[j][3]}</label>
-    </div>`
-    if (count==set.length){
+    listy = document.getElementById("questionList")
+    mother = document.getElementById("mother")
+    count=1
+    var activeQ=0;
+    var activeN=1;
+    switchQuestion = function(qNo){
+        prevButt = document.getElementById("prev")
+        nextButt = document.getElementById("next")
+        submitButt = document.getElementById("submitButt")
+        if (qNo<=Object.keys(set).length&&qNo>=1){
+        q = document.getElementById("q"+qNo)
+        oldQButt = document.getElementById("s"+activeN)
+        oldQButt.classList.remove("active")
+        qButt = document.getElementById("s"+qNo)
+        qButt.classList.add("active")
+        activeQ.style.display = "none"
+        q.style.display="block"
+        activeQ = q
+        activeN = qNo
         
+        }
+        if(qNo==1){
+            prevButt.style.display="none"
+            nextButt.style.display="inline"
+            submitButt.style.display="none"
+        } else if(qNo==Object.keys(set).length){
+            nextButt.style.display="none"
+            prevButt.style.display = "inline"
+            submitButt.style.display="inline"
+        } else {
+            nextButt.style.display="inline"
+            prevButt.style.display = "inline"
+            submitButt.style.display="none"
+        }
     }
-    if(count!=1){
-        mC.style.display = "none"
-        li.classList.remove("active")
+    questionClick = function(data){
+        switchQuestion(data.target.value)
+        console.log(set.length)
     }
-    activeQ = document.getElementById("q1")
-    mother.appendChild(mC)
-    count++
-}
-</script>
+    
+    for (var j in set){
+        li = document.createElement("li")
+        li.classList = "nos options active"
+        li.innerHTML = count
+        li.onclick = questionClick
+        li.id="s"+count
+        li.value=count
+        listy.appendChild(li)
+        mC = document.createElement("div")
+        mC.id = "q"+count
+        mC.innerHTML = `<h2><center>QUESTION ${count}</center></h2>
+        <div class="question">
+            <p>${j}</p>
+                <label class="options"><input  type="radio" name="${j}" value="1"> ${set[j][0]}</label><br><br>
+                <label class="options"><input type="radio" name="${j}" value="2"> ${set[j][1]}</label><br><br>
+                <label class="options"><input  type="radio" name="${j}" value="3"> ${set[j][2]}</label><br><br>
+                <label class="options"><input  type="radio" name="${j}" value="4"> ${set[j][3]}</label>
+        </div>`
+        if (count==set.length){
+            
+        }
+        if(count!=1){
+            mC.style.display = "none"
+            li.classList.remove("active")
+        }
+        activeQ = document.getElementById("q1")
+        mother.appendChild(mC)
+        count++
+    }
+    </script>
