@@ -81,7 +81,7 @@ def score(code):
     score = completed_test['score']
     correct_answers = completed_test['correct_answers']
 
-    return render_template('score.html',code=code,score=score, correct_answers=correct_answers,total_questions=10,regno=regno)
+    return render_template('score.html',code=code,score=score, correct_answers=correct_answers,regno=regno)
 
 @views.route('/deny', methods=['POST'])
 def deny():
