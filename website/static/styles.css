@@ -559,7 +559,7 @@ color: rgb(255, 255, 255);
 
 .badiyadi {
   background-color: white;
-    background-image: url('website/static/images/farman.png');
+    background-image: url('../static/images/farman.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%; /* This line makes the image fit the entire background */
@@ -654,7 +654,3 @@ font-weight: 400;
 font-style: normal;
 font-size: 20px;
 }
-
-
-
-
