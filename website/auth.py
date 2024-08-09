@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session, current_app
-from .models import find_user_by_reg, is_user_banned, check_password, has_taken_test
+from .models import find_user_by_reg, is_user_banned, check_password, has_taken_test,ban_user
 
 auth = Blueprint('auth', __name__)
 
@@ -46,4 +46,20 @@ def login():
 def logout():
     session.clear()
     flash('You have been logged out.', 'info')
+    return redirect(url_for('auth.login'))
+
+@auth.route('/ban/<regno>',methods=['POST'])
+def ban(regno):
+    if 'regno' not in session:
+        flash('You need to log in first.','error')
+        return redirect(url_for('auth.login'))
+    
+    user = find_user_by_reg(regno)
+    if not user:
+        flash('User not found.','error')
+        return redirect(url_for('auth.login'))
+    
+    ban_user(regno)
+
+    flash(f'The user {regno} has been banned.','warning')
     return redirect(url_for('auth.login'))

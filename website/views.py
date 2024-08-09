@@ -46,7 +46,7 @@ def test(code):
         flash(f"Test submitted successfully!")
         return redirect(url_for('views.score',code=code))
 
-    return render_template('test.html', question_dict=question_dict)
+    return render_template('test.html', question_dict=question_dict,code=code,regno=regno)
 
 @views.route('/rules', methods=['GET', 'POST'])
 def rules():

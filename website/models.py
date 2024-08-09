@@ -1,4 +1,3 @@
-from bson.objectid import ObjectId
 from datetime import datetime, timedelta
 from . import mongo
 from flask import current_app
@@ -18,10 +17,10 @@ def add_user(register_number, password):
 def find_user_by_reg(register_number):
     return current_app.mongo.db.user.find_one({"register_number":register_number})
 
-def ban_user(user_id, duration_minutes=5):
+def ban_user(register_number, duration_minutes=5):
     ban_until = datetime.now() + timedelta(minutes=duration_minutes)
     current_app.mongo.db.user.update_one(
-        {"_id":ObjectId(user_id)},
+        {"register_number":register_number},
         {"$set": {"banned":True, "ban_timer":ban_until}})
     
 def is_user_banned(register_number):
