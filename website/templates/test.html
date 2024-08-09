@@ -6,7 +6,11 @@
     <title>ExamNinja - Questions</title>
     <link rel="stylesheet" href="../static/styles.css">
 </head>
-<body class="questionpage" data-questions="{{ questions }}" id="test1">
+<body class="questionpage" oncontextmenu="return false" id="testBody" data-questions="{{ question_dict }}">
+    
+<div class="popup" id="vioPopup" style="display:none">
+    <p>Suspicious activity detected.</p>
+</div>
     <div class="container">
         <div class="header">
             <header class="brand">
@@ -15,7 +19,7 @@
             </header>
             <div class="timer">
                 <img class="timerimg" src="../static/images/timer.png" alt="image of a timer" width="40"/>
-                <span id="timer">01:00:00</span>
+                <span id="timer">  00:15:00</span>
                 
             </div>
         </div>
@@ -24,40 +28,37 @@
                 <div class="questions">
                     <h3 class="qn"><u>Questions:</u></h3>
                     <ul id="questionList">
-                        
                     </ul>
                 </div>
             </div>
-            <div id="mainquestion">
+            <form id="mainquestion" action="{{ url_for('views.test', code=code) }}" method="POST">
                 <div id="mother">
                 </div>
                 <div class="navigation">
-                    <button class="buttonquestion" id="prev" style="display:none" onclick="switchQuestion(activeN-1)">PREVIOUS</button>
-                    <button class="buttonquestion" id="next" onclick="switchQuestion(activeN+1)">NEXT</button>
+                    <button type="button" class="buttonquestion" id="prev" style="display:none" onclick="switchQuestion(activeN-1)">PREVIOUS</button>
+                    <button type="button" class="buttonquestion" id="next" onclick="switchQuestion(activeN+1)">NEXT</button>
+                    <input type="submit" id="submitButt" style="display:none"/>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
     <script>
         // Timer script
         let timer = document.getElementById('timer');
-        let time = 3600;
+let time = 15 * 60; // Convert 15 minutes to seconds
 
-        setInterval(() => {
-            let hours = Math.floor(time / 3600);
-            let minutes = Math.floor((time % 3600) / 60);
-            let seconds = time % 60;
+setInterval(() => {
+  let minutes = Math.floor(time / 60);
+  let seconds = time % 60;
 
-            timer.textContent = 
-                `${hours.toString().padStart(2, '0')}:
-                ${minutes.toString().padStart(2, '0')}:
-                ${seconds.toString().padStart(2, '0')}`;
+  timer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2,   
+ '0')}`;
 
-            if (time > 0) {
-                time--;
-            }
-        }, 1000);
+  if (time > 0) {
+    time--;
+  }
+}, 1000);
     </script>
     {% extends "questionPageScript.html"%}
 </body>

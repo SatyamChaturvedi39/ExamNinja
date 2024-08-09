@@ -377,7 +377,7 @@ color: rgb(255, 255, 255);
   text-align: center;
   padding: 20px;
   z-index: 1000; /* Ensure popup is on top */  
-  transition: opacity 0.3s ease-in-out; /* Fade in/out transition */
+  transition: 2s; /* Fade in/out transition */
 }
 /*flash*/
 
@@ -438,18 +438,27 @@ color: rgb(255, 255, 255);
    
 /*rules page*/ 
 
+.bgcolor{
+  background-color: #f0f0f0;
+  width: 98vw;
+}
+
 .rulediv{background-color: white;
   flex: 1;
   width: 70%;
   height: 500px;
   padding: 20px;
-  margin-right: 5%;
-  margin-left: 1.5%;;
+  margin: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 10px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
 font-style: normal;
+display: flex;
+align-content: center;
+flex-direction: column;
+justify-content: center;
+text-align: center;
   
 }
 .ll{
@@ -466,19 +475,19 @@ font-style: normal;
 font-style: normal;
 }
 .goodbutton {
-  padding: 10px;
+  padding: 13px;
   border-radius: 10px;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   border: none;
   color: white;
   cursor: pointer;
   background-color: #048d39;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-font-style: normal;
-font-size: 22px;
-padding: 12px;
+  font-style: normal;
+  font-size: 22px;
+  padding: 12px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-right: 10%;
 }
@@ -496,7 +505,7 @@ color: rgb(255, 255, 255);
   padding: 10px;
   border-radius: 10px;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   border: none;
   color: white;
   cursor: pointer;
@@ -511,6 +520,11 @@ margin-left: 10%;
 }
 .rulesbro{
   padding-bottom: 8px;
+  display: flex;
+align-content: center;
+flex-direction: column;
+  text-align: center;
+  justify-content: center;
 }
 
 .badbutton:active{
@@ -525,11 +539,12 @@ color: rgb(255, 255, 255);
 .buttondown {
   display: flex;
   margin: -4%;
-  column-gap: 30px;
+  column-gap: 45px;
   justify-content: center;
   align-items: baseline;
   padding-top: 10%;
   position: relative;
+  margin-bottom: 0.5%;
   
 }
 .bignice{
@@ -538,3 +553,108 @@ color: rgb(255, 255, 255);
   color: #d13030;
  padding-bottom: 8px;
 }
+
+
+/*score page*/
+
+.badiyadi {
+  background-color: white;
+    background-image: url('website/static/images/farman.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%; /* This line makes the image fit the entire background */
+    background-position: center;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.gradelogo{
+display: flex;
+justify-content: flex-start;
+margin-top: 0.8%;
+}
+
+.myhead{
+font-size: 35px;
+}
+.details {
+margin-top: 5%;
+font-family: "DM Sans", sans-serif;
+font-optical-sizing: auto;
+font-weight: 600;
+font-style: normal;
+font-size: 28px;
+margin-left: 22%;
+text-align: justify;
+}
+
+.results {
+margin-top: 5%;
+font-family: "DM Sans", sans-serif;
+font-optical-sizing: auto;
+font-weight: 600;
+font-style: normal;
+display: flex;
+flex-direction: column;
+justify-content: center;
+margin-left: 11%;
+}
+
+.percent {
+font-weight: 700;
+font-size: 40px;
+margin-left: 30%;
+font-family: "Goldman", sans-serif;
+font-weight: 700;
+font-style: normal;
+}
+
+.criteria{
+margin-top: -10%;
+font-family: "DM Sans", sans-serif;
+font-optical-sizing: auto;
+font-weight: 400;
+font-style: normal;
+font-size: 20px;
+}
+
+.marks {
+display: flex;
+justify-content: space-between;
+}
+
+
+.total{
+margin-top: 5%;
+font-family: "DM Sans", sans-serif;
+font-optical-sizing: auto;
+font-weight: 600;
+font-style: normal;
+margin-right: 39%;
+}
+
+.oneMark{
+font-weight: 700;
+font-size: 40px;
+margin-left: 10%;
+font-weight: 700;
+font-size: 40px;
+font-family: "Goldman", sans-serif;
+font-weight: 700;
+font-style: normal;
+margin-bottom: 6%;
+}
+
+.twoMark{
+font-family: "DM Sans", sans-serif;
+font-optical-sizing: auto;
+font-weight: 400;
+font-style: normal;
+font-size: 20px;
+}
+
+
+
+
