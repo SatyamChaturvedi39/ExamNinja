@@ -18,7 +18,7 @@ def find_user_by_reg(register_number):
     return current_app.mongo.db.user.find_one({"register_number":register_number})
 
 def ban_user(register_number, duration_minutes=5):
-    ban_until = datetime.now() + timedelta(minutes=duration_minutes).replace(second=0,microsecond=0)
+    ban_until = (datetime.now() + timedelta(minutes=duration_minutes)).replace(second=0,microsecond=0)
     current_app.mongo.db.user.update_one(
         {"register_number":register_number},
         {"$set": {"banned":True, "ban_timer":ban_until}})
@@ -27,14 +27,14 @@ def is_user_banned(register_number):
     user=find_user_by_reg(register_number)
     if user:
         if user["banned"]:
-            if user["ban_timer"] and datetime.now()>user["ban_timer"]:
+            if user["ban_timer"] and datetime.now()>(user["ban_timer"]):
                 current_app.mongo.db.user.update_one(
-                    {"register_number": register_number}, 
+                    {"register_number": register_number},
                     {"$set": {"banned":False, "ban_timer": None}}
                 )
-                return False
-            return True, user["ban_timer"]
-    return False, None
+                return [False,None]
+            return [True, user["ban_timer"]]
+    return [False, None]
 
 def record_test_completion(register_number, question_set_code, score, correct_answers):
     current_app.mongo.db.user.update_one(

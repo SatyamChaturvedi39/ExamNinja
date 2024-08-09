@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session, current_app
 from .models import find_user_by_reg, is_user_banned, check_password, has_taken_test,ban_user
+from datetime import datetime
 
 auth = Blueprint('auth', __name__)
 
@@ -19,9 +20,10 @@ def login():
             flash("Incorrect password.",'error')
             return redirect(url_for('auth.login'))
 
-        banned, ban_timer = is_user_banned(regno)
+        [banned, ban_timer] = is_user_banned(regno)
         if banned:
-            flash(f"You are banned until {ban_timer}.",'warning')
+            bantime=ban_timer.strftime('%I:%M %p')
+            flash(f"You are banned until {bantime}.",'warning')
             return redirect(url_for('auth.login'))
 
         question_set = current_app.mongo.db.question_sets.find_one({"code": test_code})
