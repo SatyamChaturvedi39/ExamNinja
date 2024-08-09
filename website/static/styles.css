@@ -289,14 +289,14 @@ color: rgb(255, 255, 255);
   border: none;
   color: white;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 #prev {
   background-color: #4A90E2;
-  margin-top: 12.5%;
-  margin-left: 0%;
+  margin-top: 10%;
+  margin-left: 1%;
   position: fixed;
   padding: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -305,7 +305,7 @@ color: rgb(255, 255, 255);
 #next {
   background-color: #166637;
   position: fixed;
-  margin-top: 12.5%;
+  margin-top:10.10%;
   margin-left: 63.5%;
   padding-left: 25px;
   padding-right: 25px;;
@@ -337,7 +337,7 @@ color: rgb(255, 255, 255);
   background-color: #f4be32;
   height: 25px;
   position: fixed;
-  margin-top: 12.75%;
+  margin-top: 10.25%;
   margin-left: 63%;
   padding-left: 25px;
   padding-right: 25px;;
