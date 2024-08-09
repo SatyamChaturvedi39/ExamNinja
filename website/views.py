@@ -21,6 +21,8 @@ def test(code):
     if not question_set:
         flash("Invalid test code. Please try again.", "error")
         return redirect(url_for('auth.login'))
+    
+    question_dict = {question['question']:question['options'] for question in question_set['questions']}
 
     if request.method == 'POST':
         # Process user's answers
@@ -44,7 +46,7 @@ def test(code):
         flash(f"Test submitted successfully!")
         return redirect(url_for('views.score',code=code))
 
-    return render_template('test.html', questions=question_set['questions'])
+    return render_template('test.html', question_dict=question_dict)
 
 @views.route('/rules', methods=['GET', 'POST'])
 def rules():
