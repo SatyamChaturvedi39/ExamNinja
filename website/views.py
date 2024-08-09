@@ -26,13 +26,15 @@ def test(code):
 
     if request.method == 'POST':
         # Process user's answers
+        
         answers = request.form.to_dict()
         correct_answers = 0
 
         for question in question_set['questions']:
             question_id = question['question']
             selected_answer = answers.get(question_id)
-            if selected_answer == question['answer']:
+
+            if str(selected_answer) == str(question['answer']):
                 correct_answers += 1
 
         score = correct_answers / len(question_set['questions']) * 100
@@ -43,10 +45,9 @@ def test(code):
         # Clear the session progress
         session.pop('test_in_progress', None)
 
-        flash(f"Test submitted successfully!")
         return redirect(url_for('views.score',code=code))
 
-    return render_template('test.html', question_dict=question_dict, code=code, regno=regno)
+    return render_template('test.html', question_dict=question_dict,code=code,regno=regno)
 
 @views.route('/rules', methods=['GET', 'POST'])
 def rules():
