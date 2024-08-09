@@ -70,6 +70,9 @@ def score(code):
         return redirect(url_for('auth.login'))
     
     regno = session.get('regno')
+    question_set = current_app.mongo.db.question_sets.find_one({"code": code})
+    question_dict = {question['question']:question['options'] for question in question_set['questions']}
+    
 
     user = current_app.mongo.db.user.find_one({"register_number": regno})
     completed_test = user["completed_tests"].get(code)
@@ -81,7 +84,7 @@ def score(code):
     score = completed_test['score']
     correct_answers = completed_test['correct_answers']
 
-    return render_template('score.html',code=code,score=score, correct_answers=correct_answers,regno=regno)
+    return render_template('score.html',code=code,score=score, correct_answers=correct_answers,noQ=str(len(question_dict)),regno=regno)
 
 @views.route('/deny', methods=['POST'])
 def deny():
