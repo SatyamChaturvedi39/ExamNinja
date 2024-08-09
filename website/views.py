@@ -6,7 +6,7 @@ views = Blueprint('views', __name__)
 @views.route('/test/<code>', methods=['GET', 'POST'])
 def test(code):
     if 'regno' not in session or 'test_code' not in session:
-        flash('You need to log in first.', 'error')
+        flash('User not logged in.', 'error')
         return redirect(url_for('auth.login'))
 
     if session.get('test_in_progress') is not True:
@@ -81,7 +81,7 @@ def score(code):
     score = completed_test['score']
     correct_answers = completed_test['correct_answers']
 
-    return render_template('score.html',code=code,score=score, correct_answers=correct_answers,total_questions=10,regno=regno)
+    return render_template('score.html',code=code,score=score, correct_answers=correct_answers,regno=regno)
 
 @views.route('/deny', methods=['POST'])
 def deny():
