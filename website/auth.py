@@ -48,7 +48,7 @@ def logout():
     flash('You have been logged out.', 'info')
     return redirect(url_for('auth.login'))
 
-@auth.route('/ban/<regno>',methods=['POST'])
+@auth.route('/ban/<regno>',methods=['GET'])
 def ban(regno):
     if 'regno' not in session:
         flash('You need to log in first.','error')

@@ -1,10 +1,12 @@
 <script id="qs">
 set = JSON.parse((document.getElementById("testBody").dataset.questions).replaceAll("'", "\""))
+regno = document.getElementById("testBody").dataset.regno
 violations = 0
 vioPopup = document.getElementById("vioPopup")
 
 disqualify = function(){
     alert("You have been disqualified for suspicious activity")
+    window.location.replace("/ban/"+regno)
 }
 
 document.addEventListener('keydown', function(event){
