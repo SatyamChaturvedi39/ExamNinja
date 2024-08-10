@@ -32,5 +32,13 @@
             </form>
         </div>
     </div>
+    <script>
+        // Manipulate history to detect back button
+        history.pushState(null, null, location.href);
+        window.addEventListener('popstate', function(event) {
+            // Redirect to logout on back button
+            window.location.href = "{{ url_for('auth.logout') }}";
+        });
+    </script>
 </body>
 </html>
