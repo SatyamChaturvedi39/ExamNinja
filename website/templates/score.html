@@ -25,5 +25,12 @@
         <p class="twoMark">Total Points</p>
       </div>
     </section>
+    <script>
+      // Manipulate history to detect back button
+      history.pushState(null, null, location.href);
+      window.addEventListener('popstate', function(event) {
+          window.location.href = "{{ url_for('auth.logout') }}";
+      });
+  </script>
 </body>
 </html>
