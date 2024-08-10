@@ -9,7 +9,8 @@ app = create_app()
 
 registration_numbers = [
     {"register_number": "222BCAA49", "password": "password1"},
-    {"register_number": "222BCAA50", "password": "password2"},
+    {"register_number": "222BCAA50", "password": "password1"},
+    # add more
 ]
 
 """
@@ -28,6 +29,7 @@ with app.app_context():
     for user in registration_numbers:
         if not current_app.mongo.db.user.find_one({"register_number": user["register_number"]}):
             add_user(user["register_number"], user["password"])
+            print("Data has been inserted successfully!")
         else:
             print(f"User with register number {user['register_number']} already exists.")
 
@@ -36,6 +38,4 @@ with app.app_context():
             current_app.mongo.db.question_sets.insert_one(question_set)
         else:
             print(f"Question set with code {question_set['code']} already exists.")
-
-    print("Data has been inserted successfully!")
 """
