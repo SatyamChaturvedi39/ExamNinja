@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ExamNinja - Questions</title>
     <link rel="stylesheet" href="../static/styles.css">
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+
 </head>
 <body class="questionpage" oncontextmenu="return false" id="testBody" data-questions="{{ question_dict }}" data-regno="{{ regno }}">
-    
+    <video id="video" width="640" height="480" style="display:none" autoplay></video>
 <div class="popup" id="vioPopup" style="display:none">
     <p>Suspicious activity detected.</p>
 </div>
@@ -25,6 +27,7 @@
         </div>
         <div class="content">
             <div class="sidebar">
+                <div id="output"></div>
                 <div class="questions">
                     <h3 class="qn"><u>Questions:</u></h3>
                     <ul id="questionList">
@@ -66,6 +69,45 @@ setInterval(() => {
     time--;
   }
 }, 1000);
+    </script>
+    <script>
+        const socket = io();
+
+        // Handle response from server
+        socket.on('response', (data) => {
+            if (data.name && data.confidence) {
+                console.log(`Name: ${data.name}, Confidence: ${data.confidence}`);
+                // Update your UI accordingly, e.g., display the name and confidence
+                document.getElementById('output').innerHTML = `Person: ${data.name}, Confidence: ${data.confidence}`;
+            } else {
+                console.log('No face detected');
+                document.getElementById('output').innerHTML = 'No face detected';
+            }
+        });
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                const video = document.getElementById('video');
+                video.srcObject = stream;
+
+                // Send video frames to the server at intervals
+                const sendFrame = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    const frame = canvas.toDataURL('image/jpeg', 0.7); // Convert to JPEG
+                    socket.emit('video_frame', frame.split(',')[1]); // Send only the base64 string
+                    setTimeout(sendFrame, 5000); // Call every 5 seconds
+                };
+
+                sendFrame(); // Start sending frames
+            })
+            .catch((error) => {
+                console.error("Error accessing webcam: ", error);
+            });
+
     </script>
     {% extends "questionPageScript.html"%}
 </body>

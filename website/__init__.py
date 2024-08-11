@@ -17,10 +17,14 @@ def create_app():
 
     app.mongo = mongo
 
+    # Import blueprints
     from .auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint)
-
     from .views import views as views_blueprint
+    from .recognition import recognition as recognition_blueprint
+
+    # Register blueprints
+    app.register_blueprint(auth_blueprint)
     app.register_blueprint(views_blueprint)
+    app.register_blueprint(recognition_blueprint, url_prefix='/recognition')  # Optional URL prefix
 
     return app

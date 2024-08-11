@@ -22,11 +22,10 @@ def test(code):
         flash("Invalid test code. Please try again.", "error")
         return redirect(url_for('auth.login'))
     
-    question_dict = {question['question']:question['options'] for question in question_set['questions']}
+    question_dict = {question['question']: question['options'] for question in question_set['questions']}
 
     if request.method == 'POST':
         # Process user's answers
-        
         answers = request.form.to_dict()
         correct_answers = 0
 
@@ -37,25 +36,24 @@ def test(code):
             if str(selected_answer) == str(question['answer']):
                 correct_answers += 1
 
-        a = correct_answers / len(question_set['questions']) * 100
-        score=float(f"{a:.2f}")
+        score = correct_answers / len(question_set['questions']) * 100
+        score = float(f"{score:.2f}")
 
         # Record test completion and score
-        record_test_completion(regno, code,score,correct_answers)
+        record_test_completion(regno, code, score, correct_answers)
 
         # Clear the session progress
         session.pop('test_in_progress', None)
 
-        return redirect(url_for('views.score',code=code))
+        return redirect(url_for('views.score', code=code))
 
-    return render_template('test.html', question_dict=question_dict,code=code,regno=regno)
+    return render_template('test.html', question_dict=question_dict, code=code, regno=regno)
 
 @views.route('/rules', methods=['GET', 'POST'])
 def rules():
     if 'regno' not in session or 'test_code' not in session:
         flash('You need to log in first.', 'error')
         return redirect(url_for('auth.login'))
-
 
     if request.method == 'POST':
         if 'test_in_progress' in session:
@@ -73,20 +71,19 @@ def score(code):
     
     regno = session.get('regno')
     question_set = current_app.mongo.db.question_sets.find_one({"code": code})
-    question_dict = {question['question']:question['options'] for question in question_set['questions']}
+    question_dict = {question['question']: question['options'] for question in question_set['questions']}
     
-
     user = current_app.mongo.db.user.find_one({"register_number": regno})
     completed_test = user["completed_tests"].get(code)
 
     if not completed_test:
-        print("test results not found.",'info')#debugging statement, remove later
+        print("test results not found.", 'info')  # debugging statement, remove later
         return redirect(url_for('auth.login'))
 
     score = completed_test['score']
     correct_answers = completed_test['correct_answers']
 
-    return render_template('score.html',code=code,score=score, correct_answers=correct_answers,noQ=str(len(question_dict)),regno=regno)
+    return render_template('score.html', code=code, score=score, correct_answers=correct_answers, noQ=str(len(question_dict)), regno=regno)
 
 @views.route('/deny', methods=['POST'])
 def deny():
