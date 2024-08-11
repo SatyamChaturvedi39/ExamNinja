@@ -1,2 +1,7 @@
 
 /.venv
+/Lib
+pyvenv.cfg
+/Scripts
+*.pyc
+/website/__pycache__
