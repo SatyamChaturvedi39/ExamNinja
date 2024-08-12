@@ -5,14 +5,9 @@
     };
     set = JSON.parse((document.getElementById("testBody").dataset.questions).replaceAll("'", "\""))
     regno = document.getElementById("testBody").dataset.regno
-    violations = 0
     vioPopup = document.getElementById("vioPopup")
     
-    disqualify = function(){
-        alert("You have been disqualified for suspicious activity")
-        window.location.replace("/ban/"+regno)
-    }
-    
+
     document.addEventListener('keydown', function(event){
         if ((event.ctrlKey && event.shiftKey && (event.key==="I"||event.key=="i"||event.key=="j"||event.key=="J"||event.key=="c"||event.key=="C"))||(event.key==123)||(event.key=="U"||event.ctrlKey)){
             disqualify()
@@ -25,7 +20,7 @@
         setTimeout(()=>{
              vioPopup.style.display="none"
          }, 5000)
-        if (violations>=3){
+        if (violations>=1000){
             disqualify()
         }
     }
@@ -40,12 +35,31 @@
         submitButt = document.getElementById("submitButt")
         if (qNo<=Object.keys(set).length&&qNo>=1){
         q = document.getElementById("q"+qNo)
+        qBody = document.querySelector("#q"+activeN+" p").innerHTML
+        console.log(qBody)
         oldQButt = document.getElementById("s"+activeN)
         oldQButt.classList.remove("active")
         qButt = document.getElementById("s"+qNo)
         qButt.classList.add("active")
         activeQ.style.display = "none"
         q.style.display="block"
+        console.log(activeN)
+        if(
+            ((document.getElementById(qBody+"1").checked)==false)&&
+            ((document.getElementById(qBody+"2").checked)==false)&&
+            ((document.getElementById(qBody+"3").checked)==false)&&
+            ((document.getElementById(qBody+"4").checked)==false)
+        ){
+            console.log("left empty")
+            oldQButt.classList.add("empty")
+        } else {
+            console.log("not left empty")
+            oldQButt.classList.remove("empty")
+        }
+        console.log(document.getElementById(qBody+"1").checked)
+            console.log(document.getElementById(qBody+"2").checked)
+            console.log(document.getElementById(qBody+"3").checked)
+            console.log(document.getElementById(qBody+"4").checked)
         activeQ = q
         activeN = qNo
         
@@ -82,10 +96,10 @@
         mC.innerHTML = `<h2><center>QUESTION ${count}</center></h2>
         <div class="question">
             <p>${j}</p>
-                <label class="options"><input  type="radio" name="${j}" value="1"> ${set[j][0]}</label><br><br>
-                <label class="options"><input type="radio" name="${j}" value="2"> ${set[j][1]}</label><br><br>
-                <label class="options"><input  type="radio" name="${j}" value="3"> ${set[j][2]}</label><br><br>
-                <label class="options"><input  type="radio" name="${j}" value="4"> ${set[j][3]}</label>
+                <label class="options"><input id="${j}1" type="radio" name="${j}" value="1"> ${set[j][0]}</label><br><br>
+                <label class="options"><input id="${j}2" type="radio" name="${j}" value="2"> ${set[j][1]}</label><br><br>
+                <label class="options"><input id="${j}3"  type="radio" name="${j}" value="3"> ${set[j][2]}</label><br><br>
+                <label class="options"><input id="${j}4"  type="radio" name="${j}" value="4"> ${set[j][3]}</label>
         </div>`
         if (count==set.length){
             
