@@ -438,122 +438,138 @@ color: rgb(255, 255, 255);
    
 /*rules page*/ 
 
-.bgcolor{
-  background-color: #f0f0f0;
-  width: 98vw;
+.rulesbody {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+flex-direction: column;
 }
 
-.rulediv{background-color: white;
-  flex: 1;
-  width: 70%;
-  height: 500px;
-  padding: 20px;
-  margin: auto;
+.containerrules {
+  background-color: #fff;
+  padding: 10px;
+  margin-top: 1.5%;
+  border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 10px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-font-style: normal;
-display: flex;
-align-content: center;
-flex-direction: column;
-justify-content: center;
-text-align: center;
+  width: 90%;
+  height: 500px;
+}
+
+.headingrules {
+  font-size: 35px;
+  margin: 0;
+  text-align: center;
+}
+
+.headingrulestwo{
+  font-size: 25px;
+}
+
+.contentrules {
+  display: flex;
+  margin-top: 8%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#video-container {
+  flex: 1;
+  width: 18%;
+  margin-top: -12%;
+  margin-left: 7%;
+
+}
+
+#video {
+  margin-top: 14%;
+height: 380px;
+border: 1px solid #ccc;
+border-radius: 8px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+}
+
+.therules {
+  flex: 1;
+  text-align: justify;
+  margin-top: -10%;
+  margin-right: 15%;
   
 }
-.ll{
-  text-align: left;
-  font-size: 24px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-font-style: normal;
+
+.therules .listrules {
+  padding-left: 20px;
+  font-size: 20px;
 }
-.ulta{
-  padding-left: 25%;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-font-style: normal;
-}
-.goodbutton {
-  padding: 13px;
-  border-radius: 10px;
-  margin-top: 10px;
-  margin-bottom: 40px;
-  border: none;
-  color: white;
-  cursor: pointer;
-  background-color: #048d39;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 22px;
-  padding: 12px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-right: 10%;
+.listyea{
+  padding-bottom: 3px;
 }
 
-.goodbutton:active{
-  background-color: #055d27;
-  transform: translateY(4px);
-}
-
-.goodbutton:hover{
-background-color: #055d27;
-color: rgb(255, 255, 255);
-}
-.badbutton {
-  padding: 10px;
-  border-radius: 10px;
-  margin-top: 10px;
-  margin-bottom: 40px;
-  border: none;
-  color: white;
-  cursor: pointer;
-  background-color: #d13030;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-font-style: normal;
-font-size: 22px;
-padding: 12px;
-margin-left: 10%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.rulesbro{
-  padding-bottom: 8px;
+.buttondown{
+  margin-top: 9%;
   display: flex;
-align-content: center;
-flex-direction: column;
-  text-align: center;
-  justify-content: center;
+  margin-left: 25%;
+  column-gap: 30px;
 }
 
+.badbutton{
+  background-color: #eb2525;
+  position: fixed;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 23px;
+  border: #fff;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  border-radius: 10px;
+}
+
+.goodbutton{
+  background-color: #27a012;
+  position: fixed;
+  padding-left: 25px;
+  margin-left: 10%;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 23px;
+  border: #fff;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  border-radius: 10px;
+}
 .badbutton:active{
-  background-color: #921a1a;
-  transform: translateY(4px);
+background-color: #b31111;
+transform: translateY(4px);
 }
 
 .badbutton:hover{
-background-color: #921a1a;
-color: rgb(255, 255, 255);
-}
-.buttondown {
-  display: flex;
-  margin: -4%;
-  column-gap: 45px;
-  justify-content: center;
-  align-items: baseline;
-  padding-top: 10%;
-  position: relative;
-  margin-bottom: 0.5%;
-  
-}
-.bignice{
-  font-size: x-large;
-  font-weight: bolder;
-  color: #d13030;
- padding-bottom: 8px;
+background-color: #b31111;
+color: white;
 }
 
+.goodbutton:active{
+background-color: #146113;
+transform: translateY(4px);
+}
+
+.goodbutton:hover{
+background-color: #146113;
+color: rgb(255, 255, 255);
+}
+
+
+.headrule{
+display: flex;
+align-items: flex-start;
+width: 100%;
+display: inline-block;
+vertical-align: middle;
+font-size: 30px;
+}
 
 /*score page*/
 

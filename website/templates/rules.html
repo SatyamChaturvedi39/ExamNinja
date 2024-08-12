@@ -1,43 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  
-    <title>ExamNinja - Rules</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Rules</title>
     <link rel="stylesheet" href="../static/styles.css">
 </head>
-<body class="bgcolor">
-    <header>
+<body class="rulesbody">
+    <header class="headrule">
         <img class="logo" src="../static/images/ninja.png" alt="ExamNinjaLogo">
-        <h1 class="ExamNinja">ExamNinja</h1>
+        <h1 style="font-size: 30px;" class="ExamNinja">ExamNinja</h1>
     </header>
-    <div class="rulediv">
-    <h1 class="rulesbro">Exam Rules</h1>
-    <p class="bignice">Please read the following rules before starting the exam:</p>
-    <ul class="ulta">
-        <li class="ll">Do not switch between tabs.</li>
-        <li class="ll">Do not move your cursor outside the webpage.</li>
-        <li class="ll">Using your right mouse button is not allowed.</li>
-        <li class="ll">Using keyboard shortcuts is not allowed.</li>
-        <li class="ll">The exam will be automatically submitted after 15 minutes.</li>
-        <li class="ll">You have to score higher than 40% to pass the test.</li>
-    </ul>
-        <div class="buttondown">
-            <form method="POST" action="{{ url_for('views.deny') }}">
-                <button class="badbutton" type="submit">DENY</button>
-            </form>
-            <form method="POST">
-                <button class="goodbutton" type="submit">ACCEPT</button>
-            </form>
+<div class="containerrules">
+  
+    <h1 class="headingrules">EXAM RULES</h1><br>
+    <div class="contentrules">
+        <div id="video-container">
+            <video id="video" autoplay></video>
+        </div>
+        <div class="therules">
+            <p class="headingrulestwo">Please read the following rules before starting the exam:</p>
+            <ul class="listrules">
+                <li class="listyea">Do not switch between tabs.</li>
+                <li class="listyea">Your video will be monitored through out the test period.</li>
+                <li class="listyea">Do not move your cursor outside the webpage.</li>
+                <li class="listyea">Using your right mouse button is not allowed.</li>
+                <li class="listyea">Using keyboard shortcuts is not allowed.</li>
+                <li class="listyea">The exam will be automatically submitted after 15 minutes.</li>
+                <li class="listyea">You have to score higher than 30% to pass the test.</li>
+            </ul>
+            <div class="buttondown">
+                <form method="POST" action="{{ url_for('views.deny') }}">
+                    <button class="badbutton" type="submit">DENY</button>
+                </form>
+                <form method="POST">
+                    <button class="goodbutton" type="submit">ACCEPT</button>
+                </form>
+            </div>
         </div>
     </div>
-    <script>
-        // Manipulate history to detect back button
-        history.pushState(null, null, location.href);
-        window.addEventListener('popstate', function(event) {
-            window.location.href = "{{ url_for('auth.logout') }}";
-        });
-    </script>
+
+   
+</div>
+
+<script>
+    // Access the webcam and microphone
+    async function startVideo() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+            const videoElement = document.getElementById('video');
+            videoElement.srcObject = stream;
+        } catch (error) {
+            console.error('Error accessing the webcam:', error);
+        }
+    }
+
+    window.onload = function() {
+        startVideo();
+    };
+</script>
+
 </body>
 </html>
