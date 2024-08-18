@@ -1,8 +1,8 @@
 
+*.h
 /.venv
 /Lib
-pyvenv.cfg
 /Scripts
-*.pyc
-/website/__pycache__
-website/.env
+pyvenv.cfg
+website/__pycache__/recognition.cpython-312.pyc
+

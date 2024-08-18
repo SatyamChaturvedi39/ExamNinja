@@ -9,7 +9,9 @@ Features:
 
 3.)Question Handling: Questions are stored in MongoDB, and the system dynamically fetches and displays them during the exam. The questions are presented with multiple-choice options, and the user's selected answers are processed and scored.
 
-4.)Security Measures: The system enforces strict exam rules, including restrictions on tab switching, right-clicking, and keyboard shortcuts. A timer is also included to automatically submit the exam after a set time.
+4.)Image Recognition: The camera is constantly kept on and live face recognition keeps running to constantly ensure that only the test-taker is in front of their device.
+
+4.)Activity Surveillance: The system enforces strict exam rules, including restrictions on tab switching, right-clicking, and keyboard shortcuts. A timer is also included to automatically submit the exam after a set time.
 
 5.)Post-Exam Feedback: After submitting the exam, students receive their score in percentage along with the number of correct answers out of 10.
 
