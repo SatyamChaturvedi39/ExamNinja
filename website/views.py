@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash, current_app
+from pymongo import MongoClient
 from .models import record_test_completion
 
 views = Blueprint('views', __name__)
@@ -91,3 +92,32 @@ def deny():
     session.pop('regno', None)
     session.pop('test_code', None)
     return redirect(url_for('auth.login'))
+
+@views.route('/invigilator', methods=['GET', 'POST'])
+def invi():
+    
+    client = MongoClient("mongodb+srv://farrahman111:root@samurai.6l3x38m.mongodb.net/Examninja")
+    db = client['Examninja'] 
+    # test_code = "GK1"
+    user_collection = db['user']  
+    
+    test_code = None  # Initialize test_code as None
+    user_data = []  # Initialize user_data as an empty list
+
+    if request.method == 'POST':
+        test_code = request.form.get('test_code')
+        users = user_collection.find({"completed_tests." + test_code: {"$exists": True}})
+
+        for user in users:
+            test_data = user["completed_tests"].get(test_code, {})
+
+            user_info = {
+                "reg_no": user.get("register_number", ""),
+                "status": "submitted" if test_data else "ongoing",
+                "ban": "yes" if user.get("banned", False) else "no",
+                "grade": test_data.get("score", "-")
+            }
+            user_data.append(user_info)
+
+    return render_template('invigilator.html', user_data=user_data, test_code=test_code)
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Results</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body class="invibody">
+    <header>
+        <img class="logo" src="../static/images/ninja.png" alt="ExamNinjaLogo">
+        <h1 class="ExamNinja">ExamNinja</h1>
+        <button class="home-button-invi">HOME</button>
+    </header><br>
+    <center><div class="inviform">
+        <form  method="POST" action="{{ url_for('views.invi') }}">
+            <label class="inviform-text" for="test_code">Enter Test Code:</label><br>
+            <input class="input" type="text" id="test_code" name="test_code" required>
+            <button type="submit" class="signbuttoninvi">Submit</button>
+        </form></div></center>
+    </div>
+    <div class="containerinvi">
+        {% if user_data %}
+        <h1 class="testcode">TEST CODE: {{ test_code }}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Reg No.</th>
+                    <th>Status</th>
+                    <th>Ban</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in user_data %}
+                <tr>
+                    <td>{{ user.reg_no }}</td>
+                    <td>{{ user.status }}</td>
+                    <td class="ban-{{ 'yesinvi' if user.ban == 'yes' else 'noinvi' }}">{{ user.ban }}</td>
+                    <td>{{ user.grade }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</body>
+</html>

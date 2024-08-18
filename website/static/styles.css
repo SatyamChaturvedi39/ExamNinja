@@ -670,3 +670,124 @@ font-weight: 400;
 font-style: normal;
 font-size: 20px;
 }
+
+/* invigilator */
+
+.invibody {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.containerinvi {
+  text-align: center;
+  width: 70%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 13%;
+  margin-top: 2%;
+}
+
+.testcode {
+  font-size: 24px;
+  color: #d90429;
+  margin-bottom: 2%;
+}
+
+table {
+  width: 90%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table th, table td {
+  border: 1.5px solid #1b1818;
+  padding: 10px;
+  text-align: center;
+}
+
+table th {
+  background-color: #f4f4f4;
+}
+
+.ban-yes-invi {
+  color: rgb(21, 148, 36);
+  font-weight: bold;
+}
+
+.ban-no-invi {
+  color: rgb(218, 23, 23);
+  font-weight: bold;
+}
+
+.home-button-invi {
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  margin-left: 75%;
+  margin-top: 2%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.home-button-invi:active {
+    background-color: #11510b;
+    transform: translateY(4px);
+}
+
+.home-button-invi:hover {
+  background-color: #11510b;
+  color: rgb(255, 255, 255);
+}
+.inviform{
+  background-color: #f4be32;
+  border-radius: 9px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  padding: 5px 10px;
+  transition: transform 0.2s;
+  width: 300px;
+  text-align: center;
+  height: 150px;
+  align-items: center;
+ 
+  justify-content: center;
+
+}
+.inviform-text{
+  font-family:"DM Sans", sans-serif;
+  padding:3%;
+  font-weight: 900;
+}
+.signbuttoninvi {
+  padding: 10px;
+  border-radius: 6px;
+  
+  margin-bottom: 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  background-color: #48392B;
+  width: 85%;
+  font-size: 14px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(107, 101, 101, 0.19);
+}
+.signbuttoninvi:hover {
+ 
+  
+  border: 1px solid #261d15;
+  color: #1b1818;
+
+  background-color: #ffffff;
+ 
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(107, 101, 101, 0.19);
+}
