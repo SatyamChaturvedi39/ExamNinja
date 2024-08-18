@@ -13,6 +13,10 @@
 <div class="popup" id="vioPopup" style="display:none">
     <p>Suspicious activity detected.</p>
 </div>
+
+ <div class="popup" id="emptyPopup" style="display:none; ">
+    <p>Please answer all the questions before submitting.</p>
+</div>
     <div class="container">
         <div class="header">
             <header class="brand">
@@ -72,6 +76,12 @@ setInterval(() => {
     </script>
     <script>
         const socket = io();
+        violations = 0
+        disqualify = function(){
+        alert("You have been disqualified for suspicious activity")
+        window.location.replace("/ban/"+regno)
+    }
+    
 
         // Handle response from server
         socket.on('response', (data) => {
@@ -82,6 +92,17 @@ setInterval(() => {
             } else {
                 console.log('No face detected');
                 document.getElementById('output').innerHTML = 'No face detected';
+            }
+            if ((data.confidence>=0.3)&((data.name=="shayari"&&'{{regno}}'!="222BCAA06")||(data.name=="farhaan"&&'{{regno}}'!="222BCAA05")||(data.name=="manas"&&'{{regno}}'!="222BCAA10"))){
+                violations++
+                if (violations>5){
+                    disqualify()
+                }
+            } else if (data.confidence<=0.3){
+                violations++
+                if (violations>5){
+                    disqualify()
+                }    
             }
         });
 
@@ -99,7 +120,7 @@ setInterval(() => {
                     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
                     const frame = canvas.toDataURL('image/jpeg', 0.7); // Convert to JPEG
                     socket.emit('video_frame', frame.split(',')[1]); // Send only the base64 string
-                    setTimeout(sendFrame, 5000); // Call every 5 seconds
+                    setTimeout(sendFrame, 3000); // Call every 5 seconds
                 };
 
                 sendFrame(); // Start sending frames

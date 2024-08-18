@@ -250,9 +250,15 @@ color: rgb(255, 255, 255);
   border: 0 2px 2px 0 rgba(0,0,0,0.2), 0 2px 8px 0 rgba(0,0,0,0.19);
 }
 
+.sidebar .questions ul .nos.empty{
+  background-color: yellowgreen;
+}
+
+
 .sidebar .questions ul .nos.active{
   background-color: #1E8449;
 }
+
 
 #mainquestion {
   background-color: white;
