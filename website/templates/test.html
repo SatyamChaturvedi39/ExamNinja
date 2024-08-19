@@ -93,7 +93,9 @@ setInterval(() => {
                 console.log('No face detected');
                 document.getElementById('output').innerHTML = 'No face detected';
             }
-            if ((data.confidence>=0.3)&((data.name=="shayari"&&'{{regno}}'!="222BCAA06")||(data.name=="farhaan"&&'{{regno}}'!="222BCAA05")||(data.name=="manas"&&'{{regno}}'!="222BCAA10"))){
+
+            if('{{regno}}'=="222BCAA05"||'{{regno}}'=="222BCAA06"||'{{regno}}'=="222BCAA10"){
+                 if ((data.confidence>=0.3)&((data.name=="shayari"&&'{{regno}}'!="222BCAA06")||(data.name=="farhaan"&&'{{regno}}'!="222BCAA05")||(data.name=="manas"&&'{{regno}}'!="222BCAA10"))){
                 violations++
                 if (violations>5){
                     disqualify()
@@ -103,7 +105,7 @@ setInterval(() => {
                 if (violations>5){
                     disqualify()
                 }    
-            }
+            }}
         });
 
         navigator.mediaDevices.getUserMedia({ video: true })
