@@ -3,14 +3,15 @@ from .models import find_user_by_reg, is_user_banned, check_password, has_taken_
 from datetime import datetime
 
 auth = Blueprint('auth', __name__)
-
+teachers=["222MCS01", "222TR01", "222BCAA06"]
 @auth.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         regno = request.form['regno']
         password = request.form['pw']
         test_code = request.form['code']
-
+        if regno in teachers:
+            return redirect(url_for('views.invi', code=session['test_code']))
         user = find_user_by_reg(regno)
         if not user:
             flash("Register number not found.",'error')

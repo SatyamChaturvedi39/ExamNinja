@@ -8,17 +8,10 @@
 </head>
 <body class="invibody">
     <header>
-        <img class="logo" src="../static/images/ninja.png" alt="ExamNinjaLogo">
+        <img class="logo" src="../static/images/ninja.png" alt="ExamNinjaLogo"/>
         <h1 class="ExamNinja">ExamNinja</h1>
         <button class="home-button-invi">HOME</button>
-    </header><br>
-    <center><div class="inviform">
-        <form  method="POST" action="{{ url_for('views.invi') }}">
-            <label class="inviform-text" for="test_code">Enter Test Code:</label><br>
-            <input class="input" type="text" id="test_code" name="test_code" required>
-            <button type="submit" class="signbuttoninvi">Submit</button>
-        </form></div></center>
-    </div>
+    </header><br/>
     <div class="containerinvi">
         {% if user_data %}
         <h1 class="testcode">TEST CODE: {{ test_code }}</h1>
@@ -36,7 +29,7 @@
                 <tr>
                     <td>{{ user.reg_no }}</td>
                     <td>{{ user.status }}</td>
-                    <td class="ban-{{ 'yesinvi' if user.ban == 'yes' else 'noinvi' }}">{{ user.ban }}</td>
+                    <td class="ban-{{ 'yes-invi' if user.ban == 'yes' else 'no-invi' }}">{{ user.ban }}</td>
                     <td>{{ user.grade }}</td>
                 </tr>
                 {% endfor %}
